@@ -3,9 +3,10 @@ package com.jack.algorithm;
 /**
  * create by jack 2018/10/26
  *
- * @auther jack
+ * @author jack
  * @date: 2018/10/26 22:39
- * @Description: 水容器的最大值
+ * @Description:
+ * 水容器的最大值
  */
 public class ContainerWithMostWater {
 
