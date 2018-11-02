@@ -6,6 +6,7 @@ package com.jack.algorithm;
  * @author jack
  * @date: 2018/11/1 23:30
  * @Description:
+ * 合并链表
  */
 public class MergeTwoSortedLists {
 
@@ -25,8 +26,53 @@ public class MergeTwoSortedLists {
      * @param l2
      * @return
      */
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        return null;
+    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+        ListNode head = null;
+        ListNode p1 = l1;
+        ListNode p2 = l2;
+        ListNode p = null;
+        while (p1 != null || p2 != null) {
+            if (head == null) {
+                if (p1.val <= p2.val) {
+                        head = p1;
+                        p1 = p1.next;
+                        p = head;
+                } else if (p1.val > p2.val) {
+                        head = p2;
+                        p2 = p2.next;
+                        p = head;
+                }
+            }else {
+                if (p1 != null && p2 != null) {
+                    if (p1.val <= p2.val) {
+                        p.next = p1;
+                        p = p.next;
+                        p1 = p1.next;
+                    } else {
+                        p.next = p2;
+                        p = p.next;
+                        p2 = p2.next;
+                    }
+                } else if (p1 != null && p2 == null) {
+                    p.next = p1;
+                    p = p.next;
+                    p1 = p1.next;
+                } else if (p1 == null && p2 != null) {
+                    p.next = p2;
+                    p = p.next;
+                    p2 = p2.next;
+                }
+            }
+
+            p.next = null;
+        }
+        return head;
     }
 
     /**
@@ -55,8 +101,8 @@ public class MergeTwoSortedLists {
      * 打印链表
      * @param nodes
      */
-    public static void displayListNode(RemoveNthNodeFromEndOfList.ListNode nodes){
-        RemoveNthNodeFromEndOfList.ListNode p = nodes;
+    public static void displayListNode(ListNode nodes){
+        ListNode p = nodes;
         while (p != null) {
             int num = p.val;
             System.out.print(num+"->");
@@ -66,6 +112,13 @@ public class MergeTwoSortedLists {
     }
 
     public static void main(String[] args) {
-
+        int [] nums1 = new int[]{1,2,4};
+        int [] nums2 = new int[]{1,3,4};
+        ListNode node1 = createListNode(nums1);
+        displayListNode(node1);
+        ListNode node2 = createListNode(nums2);
+        displayListNode(node2);
+        ListNode node3 = mergeTwoLists(node1,node2);
+        displayListNode(node3);
     }
 }
