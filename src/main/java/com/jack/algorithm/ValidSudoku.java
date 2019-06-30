@@ -1,10 +1,6 @@
 package com.jack.algorithm;
 
-import com.sun.javafx.logging.PulseLogger;
-
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 /**
  * create by jack 2019/5/4
